@@ -1,13 +1,18 @@
 function [errors] = a05e04solve(i)
-%UNTITLED4 Summary of this function goes here
-%   Detailed explanation goes here
+%a05e04solve solves the discretized problems using a05e04getPDE for values
+%of p going from 1 to 9.
+%   The functions plots in a log log plot the error of the numerical
+%   soution determining the absolute norm of the differece between the 
+%   computer aproximarion and the exact solution. The function also prints
+%   the experimental order of convergence in a table on the command window.
 
-% Initialize p vector
+% Initialize p, error, h and EOC vectors
 p=1:9;
 errors = zeros(1,9);
 h = zeros(1,9);
 EOC = zeros(1,8);
 
+% Determination of the flag
 if i == 1
     
     for j = 1:9
@@ -19,11 +24,13 @@ if i == 1
         
         % Exact solution
         u = X.*Y + (X.^3).*(Y.^3) - (X.^3).*(Y) - (X).*(Y.^3);
+        % Matrix operation in order to get it in the correct format
         u = u';
         u = u(:);
         
         % Numerical approximation
         [Lh,fh] = a05e04getPDE(p(j),i);
+        % Solving the system
         uh = Lh\fh;
         
         % Determine error between exact solution and approximation in max
@@ -42,6 +49,9 @@ if i == 1
     end
     
     loglog(h,errors)
+    title('Error for $u_2$','interpreter','latex')
+    xlabel('h')
+    ylabel('Error')
     table((p(2:end))',(EOC)','VariableNames',{'p','EOC'})
     
 elseif i == 2
@@ -55,11 +65,13 @@ elseif i == 2
         
         % Exact solution
         u = sin(3*pi*X).*sin(pi*Y);
+        % Matrix operation in order to get it in the correct format
         u = u';
         u = u(:);
         
         % Numerical approximation
         [Lh,fh] = a05e04getPDE(p(j),i);
+        % Solving the system
         uh = Lh\fh;
         
         % Determine error between exact solution and approximation in max
@@ -77,14 +89,15 @@ elseif i == 2
     end
     
     loglog(h,errors)
+    title('Error for $u_2$','interpreter','latex')
+    xlabel('h')
+    ylabel('Error')
     table((p(2:end))',(EOC)','VariableNames',{'p','EOC'})
 
 else 
     msgbox('Invalid Value: Please enter 1 or 2.', 'Error','error');
-    
 
 end
-   
-
+  
 end
 

@@ -2,15 +2,17 @@ function [Lh,fh] = a05e04getPDE(p,i)
 % a05e04getPDE Sets up sparse matrix Lh and the right hand side fh of the 
 % linear system Lh*uh=uh for the refinement level p on the domain
 % (0,1) * (0,1). We use the standard five-point stencil on a uniform mesh
-% with lexicographical order. 
+% with lexicographical order. We use the f functions calculated
+% analytically and evaluate them in the mesh.
 
 % Initialize grid spacing and mesh size
 N = (2^p) - 1;
 h = 1/(N+1);
 x = (1:N)*h;
+% Create a mesh in x and y with the given spacing
 [X,Y] = meshgrid(x);
 
-% Creates fh
+% Creates fh depending on the flag
 if i == 1
     fh = 6*X.*Y.*(2-Y.^2-X.^2);
 elseif i == 2
