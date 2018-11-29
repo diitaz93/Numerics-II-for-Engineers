@@ -1,4 +1,7 @@
 function [errors] = a05e04solve(i)
+% Assignment 03, Exercise 03c, by Shane Alpert (404579), 
+% Juan Sebastian Diaz (405385), Bo Yan (403787)
+
 %a05e04solve solves the discretized problems using a05e04getPDE for values
 %of p going from 1 to 9.
 %   The functions plots in a log log plot the error of the numerical

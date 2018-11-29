@@ -1,4 +1,7 @@
 function [Lh,fh] = a05e04getPDE(p,i)
+% Assignment 03, Exercise 03c, by Shane Alpert (404579), 
+% Juan Sebastian Diaz (405385), Bo Yan (403787)
+
 % a05e04getPDE Sets up sparse matrix Lh and the right hand side fh of the 
 % linear system Lh*uh=uh for the refinement level p on the domain
 % (0,1) * (0,1). We use the standard five-point stencil on a uniform mesh
